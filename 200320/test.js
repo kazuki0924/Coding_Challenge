@@ -19,15 +19,23 @@
  * @return {boolean} 含まれるかどうか
  */
 
+let isWithin = (givenTime, timeFrom, timeTo) => {
+  return givenTime < timeTo && givenTime >= timeFrom;
+};
+
 let isTimeWithin = (givenTime, timeFrom, timeTo) => {
   if (timeFrom > timeTo) {
     let forSwapping = timeFrom;
     timeFrom = timeTo;
     timeTo = forSwapping;
-    return !(givenTime < timeTo && givenTime >= timeFrom);
+    return !isWithin(givenTime, timeFrom, timeTo);
   } else {
-    return givenTime < timeTo && givenTime >= timeFrom;
+    return isWithin(givenTime, timeFrom, timeTo);
   }
 };
 
 console.log(isTimeWithin(1, 22, 0));
+console.log(isTimeWithin(1, 5, 8));
+console.log(isTimeWithin(6, 5, 9));
+console.log(isTimeWithin(8, 8, 9));
+console.log(isTimeWithin(10, 9, 10));
